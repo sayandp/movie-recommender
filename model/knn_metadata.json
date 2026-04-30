@@ -1,0 +1,13 @@
+{
+  "k": 20,
+  "metric": "cosine",
+  "n_users": 943,
+  "n_items": 1682,
+  "n_ratings": 100000,
+  "matrix_shape": [
+    943,
+    1682
+  ],
+  "sparsity": 0.937,
+  "train_time_s": 0.0
+}
