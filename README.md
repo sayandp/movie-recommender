@@ -5,10 +5,9 @@ colorFrom: green
 colorTo: green
 sdk: gradio
 sdk_version: 6.13.0
-app_file: app.py
+app_file: demo.py
 pinned: false
 ---
-
 # 🎬 Movie Recommender System
 
 User-based KNN Collaborative Filtering on MovieLens 100K.
