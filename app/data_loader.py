@@ -1,13 +1,12 @@
 import pandas as pd
 import os
 
-DATA_DIR      = "data/ml-100k"
-RATINGS_PATH  = os.path.join(DATA_DIR, "u.data")
-MOVIES_PATH   = os.path.join(DATA_DIR, "u.item")
+DATA_DIR     = "data/ml-100k"
+RATINGS_PATH = os.path.join(DATA_DIR, "u.data")
+MOVIES_PATH  = os.path.join(DATA_DIR, "u.item")
 
 
 def load_ratings() -> pd.DataFrame:
-    """Load MovieLens 100K ratings → user_id, item_id, rating."""
     if not os.path.exists(RATINGS_PATH):
         raise FileNotFoundError(
             f"Ratings file not found at '{RATINGS_PATH}'.\n"
@@ -23,7 +22,6 @@ def load_ratings() -> pd.DataFrame:
 
 
 def load_movies() -> pd.DataFrame:
-    """Load MovieLens 100K movie titles → item_id, title."""
     if not os.path.exists(MOVIES_PATH):
         raise FileNotFoundError(
             f"Movies file not found at '{MOVIES_PATH}'.\n"
@@ -46,18 +44,7 @@ def load_movies() -> pd.DataFrame:
 
 
 def load_all():
-    """Merge ratings with movie titles."""
     ratings = load_ratings()
     movies  = load_movies()
     merged  = ratings.merge(movies[["item_id", "title"]], on="item_id", how="left")
     return merged, movies
-
-
-if __name__ == "__main__":
-    ratings = load_ratings()
-    movies  = load_movies()
-    print(f"Ratings : {len(ratings):,}")
-    print(f"Users   : {ratings['user_id'].nunique():,}")
-    print(f"Movies  : {ratings['item_id'].nunique():,}")
-    print(ratings.head())
-    print(movies.head())
